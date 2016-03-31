@@ -30,7 +30,7 @@ void loop() {
   } else {
     Serial.print("Temperature: "); //вывод температуры в терминал
     Serial.print(t);
-    Serial.println(" *C");
+    Serial.println(" *C");} //здесь была пропущенна скобка 22.40 30.03
 // Температура за теплицей    
   float h2 = dht2.readHumidity();
   float t2 = dht2.readTemperature();
@@ -43,7 +43,7 @@ void loop() {
   }
 
 
-  if ((t > t2) && (t>25) && (k == 0) && (fortochka == 0)) // открыть форточку если температура в теплице выше, чем за ней и 25 градусов. 
+  if ((t > t2) && (t > 25) && (k == 0) && (fortochka == 0)) // открыть форточку если температура в теплице выше, чем за ней и 25 градусов. 
   { for (pos = 0; pos <= 180; pos += 1) { // поворачивает с 0 до 180 градусов
       // in steps of 1 degree
       myservo.write(pos);              // сказать серво повернуться
@@ -51,7 +51,7 @@ void loop() {
     }                       // ждать 0,15с, пока серво поворачивается
     fortochka = 1; // открыта форточка
       t = dht.readTemperature();
-      t2 = dht.readTemperature();
+      t2 = dht2.readTemperature();
       Serial.print("Температура в теплице: "); //вывод температуры в терминал
       Serial.print(t);
       Serial.println(" *C");
@@ -63,7 +63,7 @@ void loop() {
       while ((t > 25) && (t2<=25)) {
       digitalWrite(9, LOW);
       t = dht.readTemperature();
-      t2 = dht.readTemperature();
+      t2 = dht2.readTemperature();
       Serial.print("Температура в теплице: "); //вывод температуры в терминал
       Serial.print(t);
       Serial.println(" *C");
@@ -83,7 +83,7 @@ void loop() {
     k = 0;
     digitalWrite(9, LOW);
       t = dht.readTemperature();
-      t2 = dht.readTemperature();
+      t2 = dht2.readTemperature();
       Serial.print("Температура в теплице: "); //вывод температуры в терминал
       Serial.print(t);
       Serial.println(" *C");
@@ -93,4 +93,4 @@ void loop() {
   }
 
 }
-}
+
